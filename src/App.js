@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import ContactList from "./components/ContactList";
 import { getContacts, saveContact, updatePhoto, deleteContact } from "./api/ContactService";
@@ -20,7 +20,7 @@ function App() {
     phone: "",
     address: "",
     title: "",
-    status: "",
+    status: "Active",
   });
 
   const getAllContacts = async (page = 0, size = 10) => {
@@ -56,7 +56,7 @@ function App() {
         phone: "",
         address: "",
         title: "",
-        status: "",
+        status: "Active",
       });
       getAllContacts();
     } catch (error) {
@@ -194,13 +194,15 @@ function App() {
               </div>
               <div className="input-box">
                 <span className="details">Account Status</span>
-                <input
-                  type="text"
+                <select
                   value={values.status}
                   onChange={onChange}
                   name="status"
                   required
-                />
+                >
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
               </div>
               <div className="file-input">
                 <span className="details">Profile Photo</span>

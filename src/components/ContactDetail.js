@@ -34,7 +34,7 @@ const ContactDetail = ({ updateContact, updateImage }) => {
     inputRef.current.click();
   };
 
-  const udpatePhoto = async (file) => {
+  const updatePhoto = async (file) => {
     try {
       const formData = new FormData();
       formData.append("file", file, file.name);
@@ -79,7 +79,7 @@ const ContactDetail = ({ updateContact, updateImage }) => {
           />
           <div className="profile__metadata">
             <p className="profile__name">{contact.name}</p>
-            <p className="profile__muted">JPG, GIF, or PNG. Max size of 10MG</p>
+            <p className="profile__muted">JPG, GIF, or PNG. Max size of 10MB</p>
             <button onClick={selectImage} className="btn">
               <i className="bi bi-cloud-upload"></i> Change Photo
             </button>
@@ -147,13 +147,15 @@ const ContactDetail = ({ updateContact, updateImage }) => {
                 </div>
                 <div className="input-box">
                   <span className="details">Status</span>
-                  <input
-                    type="text"
+                  <select
                     value={contact.status}
                     onChange={onChange}
                     name="status"
                     required
-                  />
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
                 </div>
               </div>
               <div className="form_footer">
@@ -170,7 +172,7 @@ const ContactDetail = ({ updateContact, updateImage }) => {
         <input
           type="file"
           ref={inputRef}
-          onChange={(event) => udpatePhoto(event.target.files[0])}
+          onChange={(event) => updatePhoto(event.target.files[0])}
           name="file"
           accept="image/*"
         />
